@@ -35,9 +35,9 @@ public class ArraySpaceExample {
         }
         int length = endIndex - startIndex + 1;
         char [] result = new char [length];
-        int index = 0;
+        int Index = 0;
         for (int i = startIndex; i <= endIndex; i++) {
-            result [index++] = spaceArray[i];
+            result [Index++] = spaceArray[i];
 
         }
         for (char c : result) {

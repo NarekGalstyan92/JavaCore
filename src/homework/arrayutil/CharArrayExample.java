@@ -49,9 +49,6 @@ public class CharArrayExample {
 
         System.out.println();
 
-
-
-
         //Տպում ենք true եթե տեքստը պարունակում է bob բառը, բայց o-ի տեղը կարող է լինել ցանկացած սինվոլ։
         //օր․ abcbob → true, b9b -> true, բայց ասենք bac-> false
 
@@ -62,7 +59,6 @@ public class CharArrayExample {
                 bobThere = true;
                 break;
             }
-
         }
         System.out.println("BobThere is " + bobThere);
         System.out.println();
@@ -76,16 +72,6 @@ public class CharArrayExample {
                 System.out.print(text[i]);
             }
         }
-        System.out.println();
-
-
-
-
-
-
-
-
-
     }
 }
 

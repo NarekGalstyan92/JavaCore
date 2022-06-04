@@ -2,29 +2,29 @@ package chapter6.homework;
 
 // This class defines an integer stack that can hold 10 values
 public class Stack {
-    int stck [] = new int[10];
-    int tos;
+    int [] array = new int[10];
+    int index;
 
     // Initialize top of stack
     Stack() {
-        tos = -1;
+        index = -1;
     }
 
     // Push an item onto the stack
-    void push (int item) {
-        if (tos == 9) {
+    void push (int value) {
+        if (index == 9) {
             System.out.println("Stack is full.");
         } else {
-            stck[++tos] = item;
+            array[++index] = value;
         }
-        }
+    }
         //Pop an item from the stack
         int pop() {
-            if (tos < 0) {
+            if (index < 0) {
                 System.out.println("Stack underflow");
                 return 0;
             } else {
-                return  stck[tos--];
+                return  array[index--];
             }
     }
 }

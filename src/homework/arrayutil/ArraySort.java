@@ -7,11 +7,11 @@ package homework.arrayutil;
 //        Սա ստացվելուց հետո մի հատ էլ նվազման կարգով դասավորեք։
 
 public class ArraySort {
-    public static void main(String[] args) {
-        int[] numbers = {43, 55, 5, -9, 0, 12, 5, 65};
-        System.out.print("The numbers are in ascending order։ ");
+    int[] numbers = {2, 4, 6, 1, 9, 6};
+
+    void ascending() {
         for (int i = 0; i < numbers.length; i++) {
-            for (int j = i + 1; j < numbers.length-1; j++) {
+            for (int j = i + 1; j < numbers.length - 1; j++) {
                 if (numbers[i] > numbers[j]) {
                     int y = numbers[i];
                     numbers[i] = numbers[j];
@@ -20,10 +20,9 @@ public class ArraySort {
             }
             System.out.print(numbers[i] + " ");
         }
+    }
 
-        System.out.println();
-
-        System.out.print("The numbers are in descending order։ ");
+    void descending() {
         for (int i = 0; i < numbers.length; i++) {
             for (int j = i + 1; j < numbers.length; j++) {
                 if (numbers[i] < numbers[j]) {

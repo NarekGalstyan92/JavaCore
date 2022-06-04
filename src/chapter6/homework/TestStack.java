@@ -1,6 +1,6 @@
 package chapter6.homework;
 
-public class TestSack {
+public class TestStack {
     public static void main(String[] args) {
         Stack myStack1 = new Stack();
         Stack myStack2 = new Stack();
