@@ -7,8 +7,6 @@ public class CharArray {
     char[] bobArray = {'b', 'a', 'b', 'o', 'l', 'a', 'l', 'e'};
 
 
-
-
     int occure_o() {
         int count = 0;
         char c = 'o';

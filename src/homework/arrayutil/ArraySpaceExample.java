@@ -17,7 +17,7 @@ public class ArraySpaceExample {
     public static void main(String[] args) {
         char[] spaceArray = {' ', 'h', 'o', 'r', ' ', 'q', 'u', 'r', 'i', ' ', 'g', 'a', 'n', ' ', 'd', 'z', ' ', ' '};
         int startIndex = 0;
-        int endIndex = spaceArray.length- 1;
+        int endIndex = spaceArray.length - 1;
         for (int i = 0; i < spaceArray.length; i++) {
             if (spaceArray[startIndex] == ' ') {
                 startIndex++;
@@ -34,10 +34,10 @@ public class ArraySpaceExample {
             }
         }
         int length = endIndex - startIndex + 1;
-        char [] result = new char [length];
+        char[] result = new char[length];
         int Index = 0;
         for (int i = startIndex; i <= endIndex; i++) {
-            result [Index++] = spaceArray[i];
+            result[Index++] = spaceArray[i];
 
         }
         for (char c : result) {

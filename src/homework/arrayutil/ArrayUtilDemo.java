@@ -37,12 +37,5 @@ public class ArrayUtilDemo {
         System.out.println("The summary of all elements from array is: " + au8.elementsummary());
 
 
-
-
-
-
-
-
-
     }
 }

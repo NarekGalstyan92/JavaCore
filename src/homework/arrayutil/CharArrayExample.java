@@ -55,7 +55,7 @@ public class CharArrayExample {
         char[] bobArray = {'b', 'a', 'b', 'o', 'l', 'a', 'l', 'e'};
         boolean bobThere = false;
         for (int i = 0; i < bobArray.length - 2; i++) {
-            if (bobArray [i] == 'b' && bobArray [i+2] =='b') {
+            if (bobArray[i] == 'b' && bobArray[i + 2] == 'b') {
                 bobThere = true;
                 break;
             }
@@ -65,7 +65,7 @@ public class CharArrayExample {
 
         //պետք է տպել մասսիվի այն սիմվոլները որոնք պռաբել չեն
 
-        char[] text = {' ', ' ', 'h', 'o', 'r', 'q', 'u', 'r', 'i', '_', 'g', 'a', 'n', 'd', 'z', ' ', ' ' };
+        char[] text = {' ', ' ', 'h', 'o', 'r', 'q', 'u', 'r', 'i', '_', 'g', 'a', 'n', 'd', 'z', ' ', ' '};
         System.out.print("Here is the FINAL text I worked on 4 goddamn hours: ");
         for (int i = 0; i < text.length; i++) {
             if (text[i] != ' ') {

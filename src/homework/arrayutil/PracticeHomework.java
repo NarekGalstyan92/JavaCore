@@ -15,14 +15,16 @@ public class PracticeHomework {
         minute = second * 60;
         return minute;
     }
-    int nextNumber (int nextNumber) {
 
-        something =  nextNumber++;
+    int nextNumber(int nextNumber) {
+
+        something = nextNumber++;
 
 
         return nextNumber;
     }
-    boolean isSameNum (int a, int b) {
+
+    boolean isSameNum(int a, int b) {
         something = a;
         anything = b;
         boolean same = false;
@@ -32,7 +34,8 @@ public class PracticeHomework {
 
         return same;
     }
-    boolean lessThanOrEqualToZero (int number) {
+
+    boolean lessThanOrEqualToZero(int number) {
         something = number;
         boolean checkEqual = false;
         if (number <= 0) {
@@ -44,7 +47,7 @@ public class PracticeHomework {
     }
 
     boolean reverseBool(int s, int a) {
-        something =s;
+        something = s;
         anything = a;
         boolean deny;
         if (s + a == 20) {
@@ -55,7 +58,7 @@ public class PracticeHomework {
         return false;
     }
 
-    void maxLenght ( int c, int d) {
+    void maxLenght(int c, int d) {
 
         letterC = c;
         letterD = d;
@@ -72,12 +75,11 @@ public class PracticeHomework {
         if (c > d) {
 
             System.out.print("The longest array length is: " + c);
-        }else {
+        } else {
             System.out.print("The longest array length is: " + d);
         }
 
     }
-
 
 
 }
