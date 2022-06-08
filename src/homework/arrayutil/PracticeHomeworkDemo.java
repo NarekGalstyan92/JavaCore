@@ -15,10 +15,15 @@ public class PracticeHomeworkDemo {
         System.out.println("The statment that a <= 0 is: " + ph4.lessThanOrEqualToZero(150));
 
         PracticeHomework ph5 = new PracticeHomework();
-        System.out.println("The negation of value is: " + ph5.reverseBool(7, 13)); //սրա ու ներքևինի վրա կաղացել եմ
+        System.out.println("The negation of value is: " + ph5.reverseBool(true));
 
-        PracticeHomework ph6 = new PracticeHomework(); // մառոժնի եմ ուզում, վառվա սրաձեռը
-        ph6.maxLenght(4, 8);
+        PracticeHomework ph6 = new PracticeHomework();
+        int [] array1 = {3, 4, 5};
+        int [] array2 = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println("longhest array ends with " + ph6.maxLenght(array1, array2));
+
+        PracticeHomework ph7 = new PracticeHomework();
+        System.out.println("There are " + ph7.calcAge(1) + " days in your inputted years");
 
 
     }
