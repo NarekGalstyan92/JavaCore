@@ -10,7 +10,7 @@ public class Stack {
     private int tos;
 
     // Initialize top-of-stack
-    Stack() {
+    public Stack() {
         tos = -1;
     }
 
@@ -31,6 +31,7 @@ public class Stack {
         }else{
             return stck[tos--];
         }
+
 
     }
 }
