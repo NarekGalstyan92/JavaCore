@@ -32,10 +32,25 @@ public class DynamicArray {
     //Գրել մեթոդ add(int index, int value) որը տրված վելյուն կդնի տրված ինդեքսի տեղը,
     // իսկ էղած թիվը ու կողքի բոլոր թվերը կտանի աջ, ոչ մի թիվ չի կորի
     public void addNewValue(int index, int value) {
-        int[] changedArray = new int[size];
-        System.out.print("Here is the array with added value: ");
-        for (int i = 0; i < size; i++) {
-
+        if (index > size) {
+            System.out.print("Your array length is less then" + "\"" + index + "\"" + ". Try to enter another index");
+        } else {
+            System.out.print("Here is your array with added value under " + index + ": ");
+            int[] changedArray = new int[size + 1];
+            for (int i = 0; i <= index; i++) {
+                changedArray[i] = array[i];
+                if (i == index) {
+                    changedArray[i] = value;
+                }
+            }
+            for (int i = index + 1; i < changedArray.length; i++) {
+                changedArray[i] = array[i - 1];
+            }
+            for (int i = 0; i < size + 1; i++) {
+                System.out.print(changedArray[i] + " ");
+            }
+            System.out.println();
+            array = changedArray;
         }
         System.out.println();
     }

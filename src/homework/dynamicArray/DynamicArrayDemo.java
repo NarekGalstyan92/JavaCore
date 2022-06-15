@@ -14,7 +14,7 @@ public class DynamicArrayDemo {
         da.getByIndex(8);
         da.getFirstIndexByValue(77);
         da.set(1, 200);
-//        da.addNewValue(3, 200000);  Need some updates
+        da.addNewValue(3, 200000);
         da.delete(1);
     }
 }
