@@ -11,10 +11,10 @@ public class DynamicArrayDemo {
 
         da.isEmpty();
         da.printArray();
-        da.getByIndex(8);
+        da.getByIndex(1);
         da.getFirstIndexByValue(77);
-        da.set(1, 200);
+        da.set(1, 5600);
         da.addNewValue(3, 200000);
-        da.delete(1);
+        da.delete(6);
     }
 }
