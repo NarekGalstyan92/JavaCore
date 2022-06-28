@@ -1,8 +1,7 @@
 package homework.books;
 
-import homework.students.StudentStorage;
-
 import java.util.Scanner;
+
 
 public class BookDemo implements Commands {
 
@@ -11,7 +10,7 @@ public class BookDemo implements Commands {
 
     public static void main(String[] args) {
         bookStorage.add(new Book("Master & Margarita", "Bulgakov", 75.0, 1, "Novel"));
-        bookStorage.add(new Book("Samuel", "Raffi", 125.0, 1, "Novel"));
+        bookStorage.add(new Book("Samuel", "Raffi", 125.0, 10, "Novel"));
         bookStorage.add(new Book("Harry Potter", "Rowling", 100.0, 1, "Fantasy"));
         boolean run = true;
         while (run) {
@@ -21,6 +20,7 @@ public class BookDemo implements Commands {
             System.out.println("Please input " + PRINT_BOOKS_BY_AUTHOR_NAME + " to print books by author name");
             System.out.println("Please input " + PRINT_BOOKS_BY_GENRE + " to print books by genre");
             System.out.println("Please input " + PRINT_BOOKS_BY_PRICE_RANGE + " to print books by price range");
+            System.out.println("Please input " + SHOW_COUNT_OF_BOOKS_BY_AUTHOR + " to show count of the book");
             int command = Integer.parseInt(scanner.nextLine());
             switch (command) {
                 case EXIT:
@@ -40,6 +40,9 @@ public class BookDemo implements Commands {
                     break;
                 case PRINT_BOOKS_BY_PRICE_RANGE:
                     printBooksByPriceRange();
+                    break;
+                case SHOW_COUNT_OF_BOOKS_BY_AUTHOR:
+                    showCountOfBooks();
                     break;
                 default:
                     System.out.println("Invalid command");
@@ -68,6 +71,12 @@ public class BookDemo implements Commands {
         bookStorage.printBookByAuthorName(authorName);
     }
 
+    private static void showCountOfBooks(){
+        System.out.println("Please enter book title");
+        String title = scanner.nextLine();
+        System.out.println(bookStorage.bookCount(title));
+    }
+
     private static void addBook() {
         System.out.println("Please input books title");
         String title = scanner.nextLine();
@@ -92,6 +101,7 @@ public class BookDemo implements Commands {
         if (genre != null) {
             genre = genre.trim();
         }
+
 
         Book book = new Book(title, authorName, price, count, genre);
         bookStorage.add(book);

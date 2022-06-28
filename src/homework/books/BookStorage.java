@@ -1,7 +1,5 @@
 package homework.books;
 
-import java.util.Arrays;
-
 public class BookStorage {
     private Book[] array = new Book[10];
     private int size = 0;
@@ -25,6 +23,7 @@ public class BookStorage {
         for (int i = 0; i < size; i++) {
             System.out.println(i + ". " + array[i]);
         }
+        System.out.println();
     }
 
     public void printBookByAuthorName(String authorName) {
@@ -38,7 +37,6 @@ public class BookStorage {
                 System.out.println("Author not found");
                 break;
             }
-
         }
     }
 
@@ -49,7 +47,7 @@ public class BookStorage {
                 count++;
                 System.out.println(array[i]);
             }
-            if (count ==0){
+            if (count == 0) {
                 System.out.println("Genre not found");
                 break;
             }
@@ -63,10 +61,23 @@ public class BookStorage {
                 count++;
                 System.out.println(array[i]);
             }
-            if (count ==0) {
+            if (count == 0) {
                 System.out.println("Sorry, no match");
                 break;
             }
         }
+    }
+
+    public int bookCount(String title) {
+        int a = 0;
+        for (int i = 0; i < size; i++) {
+            if (array[i].getTitle().equals(title)) {
+                a = array[i].getCount();
+            }
+        }
+        if (a == 0) {
+            System.out.println("Wrong/missing author");
+        }
+        return a;
     }
 }
