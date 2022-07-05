@@ -1,4 +1,6 @@
-package homework.books;
+package homework.books.storage;
+
+import homework.books.model.Book;
 
 public class BookStorage {
     private Book[] array = new Book[10];
@@ -29,7 +31,7 @@ public class BookStorage {
     public void printBookByAuthorName(String authorName) {
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (array[i].getAuthorName().equals(authorName)) {
+            if (array[i].getAuthor().equals(authorName)) {
                 count++;
                 System.out.println(array[i]);
             }
@@ -53,6 +55,16 @@ public class BookStorage {
             }
         }
     }
+
+//    public boolean checkSameAuthor(String name, String surname) {
+//        for (int i = 0; i < size; i++) {
+//            if (array[i].getAuthor().equals(name) && array[i].getAuthorSurName().equals(surname)) {
+//                System.out.println("Author already exist");
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public void printBooksByPriceRange(double minPrice, double maxPrice) {
         int count = 0;
@@ -80,4 +92,5 @@ public class BookStorage {
         }
         return a;
     }
+
 }

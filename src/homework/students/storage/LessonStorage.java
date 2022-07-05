@@ -1,14 +1,16 @@
-package homework.students;
+package homework.students.storage;
 
-public class StudentStorage {
-    private Student[] array = new Student[10];
+import homework.students.model.Lesson;
+
+public class LessonStorage {
+    private Lesson[] array = new Lesson[10];
     private int size = 0;
 
-    public void add(Student student) {
+    public void add(Lesson lesson) {
         if (array.length == size) {
             increaseArray();
         }
-        array[size++] = student;
+        array[size++] = lesson;
     }
 
     public void print() {
@@ -18,7 +20,7 @@ public class StudentStorage {
     }
 
     private void increaseArray() {
-        Student[] temp = new Student[array.length + 10];
+        Lesson[] temp = new Lesson[array.length + 10];
         for (int i = 0; i < array.length; i++) {
             temp[i] = array[i];
         }
@@ -36,28 +38,11 @@ public class StudentStorage {
         }
     }
 
-    public void printStudentsByLessonName(String lessonName) {
-        for (int i = 0; i < size; i++) {
-            if (array[i].getLesson().equals(lessonName)) {
-                System.out.println(array[i]);
-            }
-        }
-    }
-
     public int getSize() {
         return size;
     }
 
-    public void setLesson(int studentIndexByLesson, String lesson) {
-        if (studentIndexByLesson < 0 || studentIndexByLesson >= size) {
-            System.out.println("Invalid index");
-        } else {
-            array[studentIndexByLesson].setLesson(lesson);
-
-        }
-    }
-
-    public Student getSudentByIndex(int index) {
+    public Lesson getLessonByIndex(int index) {
         if (index < 0 || index > size) {
             return null;
         } else {
