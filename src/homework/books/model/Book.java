@@ -15,7 +15,7 @@ public class Book {
         this.genre = genre;
     }
 
-    public Book(String s, Author bulgakov, int i, String novel) {
+    public Book() {
     }
 
     public String getTitle() {

@@ -1,5 +1,6 @@
 package homework.students.storage;
 
+import homework.students.exception.LessonNotFoundException;
 import homework.students.model.Lesson;
 
 public class LessonStorage {
@@ -42,9 +43,9 @@ public class LessonStorage {
         return size;
     }
 
-    public Lesson getLessonByIndex(int index) {
+    public Lesson getLessonByIndex(int index) throws LessonNotFoundException {
         if (index < 0 || index > size) {
-            return null;
+            throw new LessonNotFoundException("Lesson with index " + index + "doesn't exist");
         } else {
             return array[index];
         }

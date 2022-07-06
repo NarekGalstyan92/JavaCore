@@ -1,17 +1,15 @@
 package homework.books;
 
 import homework.books.commands.Commands;
+import homework.books.exceptions.AuthorNotFoundException;
 import homework.books.model.Author;
 import homework.books.storage.AuthorStorage;
 import homework.books.storage.BookStorage;
 import homework.books.model.Book;
-import homework.students.model.Lesson;
 
 import java.util.Scanner;
 
-
 public class BookDemo implements Commands {
-    private static homework.books.model.Author Author;
     private static Scanner scanner = new Scanner(System.in);
     private static BookStorage bookStorage = new BookStorage();
     private static AuthorStorage authorStorage = new AuthorStorage();
@@ -19,22 +17,27 @@ public class BookDemo implements Commands {
 
     public static void main(String[] args) {
 
-//        Author Bulgakov = new Author("Aleksandr", "Bulgakov", "abc@gmail.com", "male");
-//        Author Charents = new Author("Yeghishe", "Charents", "def@gmail.com", "male");
-//        Author Rowling = new Author("Joanne", "Rowling", "miban@gmail.com", "female");
-//        authorStorage.add(Bulgakov);
-//        authorStorage.add(Charents);
-//        authorStorage.add(Rowling);
-//
-//
-//        bookStorage.add(new Book("Master & Margarita", Bulgakov, 1, "Novel"));
-//        bookStorage.add(new Book("Poems", Charents, 1, "Novel"));
-//        bookStorage.add(new Book("Harry Potter", Rowling, 3, "Fantasy"));
+        Author Bulgakov = new Author("Mikhail", "Bulgakov", "abc@gmail.com", "male");
+        Author Charents = new Author("Yeghishe", "Charents", "def@gmail.com", "male");
+        Author Rowling = new Author("Joanne", "Rowling", "miban@mail.ru", "female");
+        authorStorage.add(Bulgakov);
+        authorStorage.add(Charents);
+        authorStorage.add(Rowling);
+
+        bookStorage.add(new Book("Master & Margarita", Bulgakov, 100, 1, "Novel"));
+        bookStorage.add(new Book("Poems", Charents, 50, 1, "Novel"));
+        bookStorage.add(new Book("Harry Potter", Rowling, 85, 20, "Fantasy"));
 
         boolean run = true;
         while (run) {
             Commands.printCommands();
-            int command = Integer.parseInt(scanner.nextLine());
+            int command;
+            try {
+                command = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please choose correct number");
+                command = -1;
+            }
             switch (command) {
                 case EXIT:
                     run = false;
@@ -45,8 +48,8 @@ public class BookDemo implements Commands {
                 case PRINT_ALL_BOOKS:
                     bookStorage.print();
                     break;
-                case PRINT_BOOKS_BY_AUTHOR_NAME:
-                    printBookByAuthorName();
+                case PRINT_BOOKS_BY_AUTHOR_SURNAME:
+                    printBookByAuthorSurname();
                     break;
                 case PRINT_BOOKS_BY_GENRE:
                     printBookByGenre();
@@ -65,12 +68,13 @@ public class BookDemo implements Commands {
                     break;
                 default:
                     System.out.println("Invalid command");
-
+                    System.out.println();
             }
         }
     }
 
     private static void addAuthor() {
+
         System.out.println("Input author's name");
         String authorName = scanner.nextLine();
         System.out.println("Input author's surname");
@@ -89,8 +93,16 @@ public class BookDemo implements Commands {
         if (email != null) {
             email = email.trim();
         }
+        if (!email.contains("@") | !email.contains(".com") & !email.contains(".ru")) {
+            System.out.println("E-mail must contain symbols '@', and domains '.com' or '.ru' or '.am' ");
+            addAuthor();
+        }
         if (gender != null) {
             gender = gender.trim();
+        }
+        if (!gender.contains("male") & !gender.contains("female")) {
+            System.out.println("Please be sure you entered 'male' or 'female' ");
+            addAuthor();
         }
 
         Author author = new Author(authorName, authorSurname, email, gender);
@@ -102,22 +114,47 @@ public class BookDemo implements Commands {
 
     private static void printBooksByPriceRange() {
         System.out.println("Please input book's minimum price");
-        double minPrice = Double.parseDouble(scanner.nextLine());
+        double minPrice = 0;
+        try {
+            minPrice = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter only numbers. They must be without any symbols, white spaces or letters, be positive");
+        }
+
         System.out.println("Please input book's maximum price");
-        double maxPrice = Double.parseDouble(scanner.nextLine());
+        double maxPrice = 0;
+        try {
+            maxPrice = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter only numbers. They must be without any symbols, white spaces or letters and be positive numbers");
+        }
         bookStorage.printBooksByPriceRange(minPrice, maxPrice);
     }
 
     private static void printBookByGenre() {
         System.out.println("Please input book's genre");
         String genre = scanner.nextLine();
-        bookStorage.printBookByGenre(genre);
+        if (genre == null) {
+            System.out.println("Please be sure you entered genre");
+        } else {
+            bookStorage.printBookByGenre(genre);
+        }
     }
 
-    private static void printBookByAuthorName() {
-        System.out.println("Please input author name");
-        String authorName = scanner.nextLine();
-        bookStorage.printBookByAuthorName(authorName);
+    private static void printBookByAuthorSurname() {
+        if (authorStorage.getSize() != 0) {
+            System.out.println("Please input author surname");
+            String authorSurname = scanner.nextLine();
+            if (authorSurname == null) {  // I have a problem here. if I enter nothing (just push Enter), this if doesn't work
+                System.out.println("Please be sure you entered Author's name");
+                printBookByAuthorSurname();
+            } else {
+                authorSurname.trim();
+                bookStorage.printBookByAuthorName(authorSurname);
+            }
+        } else {
+            System.out.println("You haven't any book in your storage");
+        }
     }
 
     private static void showCountOfBooks() {
@@ -128,36 +165,56 @@ public class BookDemo implements Commands {
 
     private static void addBook() {
         if (authorStorage.getSize() != 0) {
-            authorStorage.print();
             System.out.println("Please choose author index");
-            int authorIndiex = Integer.parseInt(scanner.nextLine());
-            Author author = authorStorage.getAuthorByIndex(authorIndiex);
-            if (author == null) {
-                System.out.println("Please choose correct index!!!");
-                addBook();
-            } else {
+            authorStorage.print();
+
+            Author author = null;
+
+            try {
+                int authorIndex = Integer.parseInt(scanner.nextLine());
+                if (authorIndex == authorStorage.getSize()) {
+                    System.out.println("Invalid index");
+                    return;
+                }
+
+                author = authorStorage.getAuthorByIndex(authorIndex);
                 System.out.println("Please input books title");
                 String title = scanner.nextLine();
                 System.out.println("Please input book's price");
-                int price = Integer.parseInt(scanner.nextLine());
+                int price = 0;
+                try {
+                    price = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter only numbers. They must be without any symbols, white spaces or letters and be positive numbers");
+                    addBook();
+                }
                 System.out.println("Please input book's count");
-                int count = Integer.parseInt(scanner.nextLine());
+                int count = 0;
+                try {
+                    count = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter only numbers. They must be without any symbols, white spaces or letters and be positive numbers");
+                }
+
                 System.out.println("Please input book's genre");
                 String genre = scanner.nextLine();
-
-                if (title != null) {
-                    title = title.trim();
-                }
                 if (genre != null) {
-                    genre = genre.trim();
+                    genre.trim();
+                } else {
+                    System.out.println("Please input genre");
+                    addBook();
                 }
 
                 Book book = new Book(title, author, price, count, genre);
                 bookStorage.add(book);
                 System.out.println("book added successfully!");
                 System.out.println(book);
+
+            } catch (AuthorNotFoundException | NumberFormatException e) {
+                System.out.println("Please choose correct index or input correct number!!!");
+                addBook();
             }
         }
-
     }
 }
+

@@ -8,8 +8,8 @@ public class BookStorage {
 
     private void increaseArray() {
         Book[] temp = new Book[array.length + 10];
-        for (int i = 0; i < array.length; i++) {
-            temp[i] = array[i];
+        for (int i = 0; i < array.length; i++) { // or instead of 'for' we can do
+            temp[i] = array[i];                  // **System.arraycopy(array, 0, temp, 0, array.length);**
         }
         array = temp;
     }
@@ -28,17 +28,16 @@ public class BookStorage {
         System.out.println();
     }
 
-    public void printBookByAuthorName(String authorName) {
+    public void printBookByAuthorName(String authorSurame) {
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (array[i].getAuthor().equals(authorName)) {
+            if (array[i].getAuthor().getSurname().equals(authorSurame)) {
                 count++;
                 System.out.println(array[i]);
             }
-            if (count == 0) {
-                System.out.println("Author not found");
-                break;
-            }
+        }
+        if (count == 0) {
+            System.out.println("Author not found");
         }
     }
 

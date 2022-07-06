@@ -1,6 +1,7 @@
 package homework.students;
 
 import homework.students.command.Commands;
+import homework.students.exception.LessonNotFoundException;
 import homework.students.model.Lesson;
 import homework.students.model.Student;
 import homework.students.storage.LessonStorage;
@@ -29,7 +30,13 @@ public class StudentDemo implements Commands {
         boolean run = true;
         while (run) {
             Commands.printCommands();
-            int command = Integer.parseInt(scanner.nextLine());
+            int command;
+            try {
+                command = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                command = -1;
+            }
+
             switch (command) {
                 case EXIT:
                     run = false;
@@ -94,16 +101,18 @@ public class StudentDemo implements Commands {
             System.out.println("Wrong Index!!!");
             changeStudentLessonName();
         } else {
-            if (lessonStorage.getSize() !=0){
+            if (lessonStorage.getSize() != 0) {
                 lessonStorage.print();
                 System.out.println("Please choose lesson index");
-                int lessonIndex = Integer.parseInt(scanner.nextLine());
-                Lesson lesson = lessonStorage.getLessonByIndex(lessonIndex);
-                if (lesson != null) {
+                try {
+                    int lessonIndex = Integer.parseInt(scanner.nextLine());
+                    Lesson lesson = lessonStorage.getLessonByIndex(lessonIndex);
                     student.setLesson(lesson);
                     System.out.println("lesson changed!");
+                } catch (LessonNotFoundException | NumberFormatException e) {
+                    System.out.println("Please input correct number or index!");
+                    changeStudentLessonName();
                 }
-
             }
         }
 
@@ -123,16 +132,16 @@ public class StudentDemo implements Commands {
     }
 
     private static void addStudent() {
-        if (lessonStorage.getSize() !=0){
+        if (lessonStorage.getSize() != 0) {
             System.out.println("Please choose lesson index");
             lessonStorage.print();
             System.out.println();
-            int lessonIndex = Integer.parseInt(scanner.nextLine());
-            Lesson lesson = lessonStorage.getLessonByIndex(lessonIndex);
-            if (lesson == null) {
-                System.out.println("Please choose correct index!!!");
-                addStudent();
-            } else {
+
+            Lesson lesson = null;
+            try {
+                int lessonIndex = Integer.parseInt(scanner.nextLine());
+
+                lesson = lessonStorage.getLessonByIndex(lessonIndex);
                 System.out.println("Please input student's name");
                 String name = scanner.nextLine();
                 System.out.println("Please input student's surname");
@@ -149,8 +158,10 @@ public class StudentDemo implements Commands {
                 System.out.println("student created");
                 System.out.println(student);
 
+            } catch (LessonNotFoundException | NumberFormatException e) {
+                System.out.println("Please choose correct index or input correct number!!!");
+                addStudent();
             }
         }
-
     }
 }

@@ -4,7 +4,7 @@ public interface Commands {
     int EXIT = 0;
     int ADD_BOOK = 1;
     int PRINT_ALL_BOOKS = 2;
-    int PRINT_BOOKS_BY_AUTHOR_NAME = 3;
+    int PRINT_BOOKS_BY_AUTHOR_SURNAME = 3;
     int PRINT_BOOKS_BY_GENRE = 4;
     int PRINT_BOOKS_BY_PRICE_RANGE = 5;
     int SHOW_COUNT_OF_BOOKS_BY_AUTHOR = 6;
@@ -15,7 +15,7 @@ public interface Commands {
         System.out.println("Please input " + EXIT + " to exit");
         System.out.println("Please input " + ADD_BOOK + " to add book");
         System.out.println("Please input " + PRINT_ALL_BOOKS + " to print all books");
-        System.out.println("Please input " + PRINT_BOOKS_BY_AUTHOR_NAME + " to print books by author name");
+        System.out.println("Please input " + PRINT_BOOKS_BY_AUTHOR_SURNAME + " to print books by author surname");
         System.out.println("Please input " + PRINT_BOOKS_BY_GENRE + " to print books by genre");
         System.out.println("Please input " + PRINT_BOOKS_BY_PRICE_RANGE + " to print books by price range");
         System.out.println("Please input " + SHOW_COUNT_OF_BOOKS_BY_AUTHOR + " to show count of the book");
