@@ -2,6 +2,7 @@ package homework.books;
 
 import homework.books.commands.Commands;
 import homework.books.exceptions.AuthorNotFoundException;
+import homework.books.id.Identification;
 import homework.books.model.Author;
 import homework.books.storage.AuthorStorage;
 import homework.books.storage.BookStorage;
@@ -27,6 +28,15 @@ public class BookDemo implements Commands {
         bookStorage.add(new Book("Master & Margarita", Bulgakov, 100, 1, "Novel"));
         bookStorage.add(new Book("Poems", Charents, 50, 1, "Novel"));
         bookStorage.add(new Book("Harry Potter", Rowling, 85, 20, "Fantasy"));
+
+        /* I can make this part of code like I call this method after <<"run" is false>>, so (in future) another client
+        can log in to the program, and it won't stop ever till closing the program manual
+         */
+        boolean start = true;
+        while (start) {
+            Identification.welcomePart();
+            start = false;
+        }
 
         boolean run = true;
         while (run) {
@@ -216,5 +226,7 @@ public class BookDemo implements Commands {
             }
         }
     }
+
+
 }
 
