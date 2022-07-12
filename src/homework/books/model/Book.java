@@ -7,12 +7,15 @@ public class Book {
     private int count;
     private String genre;
 
-    public Book(String title, Author author, double price, int count, String genre) {
+    private User registeredUser;
+
+    public Book(String title, Author author, double price, int count, String genre, User registeredUser) {
         this.title = title;
         this.author = author;
         this.price = price;
         this.count = count;
         this.genre = genre;
+        this.registeredUser = registeredUser;
     }
 
     public Book() {
@@ -58,6 +61,14 @@ public class Book {
         this.genre = genre;
     }
 
+    public User getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -66,6 +77,7 @@ public class Book {
                 ", price=" + price +
                 ", count=" + count +
                 ", genre='" + genre + '\'' +
+                ", book added by " + '\'' + registeredUser.getName() + '\'' +
                 '}';
     }
 }

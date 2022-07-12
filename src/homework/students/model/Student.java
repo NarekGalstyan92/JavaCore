@@ -88,7 +88,7 @@ public class Student {
                 ", age=" + age +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", lesson ='" + lesson.getName() + '\'' +
-              ", registeredUser ='" + registeredUser + '\'' +
+                ", registeredUser ='" + registeredUser + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }
