@@ -2,7 +2,7 @@ package chapter8.homework;
 
 // A simple example of inheritance
 //Create a superclass
-public class A {
+class A {
     int i, j;
 
     void showij() {
