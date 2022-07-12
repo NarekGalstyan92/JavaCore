@@ -24,6 +24,7 @@ public class StudentDemo implements Commands {
 
 
     public static void main(String[] args) {
+
         initData();
 
         boolean run = true;
@@ -49,11 +50,8 @@ public class StudentDemo implements Commands {
                 default:
                     System.out.println("Invalid command");
                     System.out.println();
-
             }
         }
-
-
     }
 
     private static void login() {
@@ -141,7 +139,6 @@ public class StudentDemo implements Commands {
                 System.out.println("User with " + userData[0] + " already exist!");
             }
         }
-
     }
 
     private static void loginAdmin() {
