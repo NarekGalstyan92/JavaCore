@@ -1,6 +1,5 @@
 package chapter9.homework;
-
-public class Client implements CallBack{
+ class Client implements CallBack{
     // Implement CallBack's interface
 
     @Override
