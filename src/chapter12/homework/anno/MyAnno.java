@@ -1,4 +1,4 @@
-package chapter12.homework.Anno;
+package chapter12.homework.anno;
 
 // show all annotations for a class and method.
 
