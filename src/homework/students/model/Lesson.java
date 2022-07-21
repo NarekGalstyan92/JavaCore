@@ -1,16 +1,22 @@
 package homework.students.model;
 
+import java.util.Date;
+
+import static homework.students.util.DateUtil.dateToString;
+
 public class Lesson {
     private String name;
-    private  String teacherName;
+    private String teacherName;
     private int duration;
     private double price;
+    private Date startDate;
 
-    public Lesson(String name, String teacherName, int duration, double price) {
+    public Lesson(String name, String teacherName, int duration, double price, Date startDate) {
         this.name = name;
         this.teacherName = teacherName;
         this.duration = duration;
         this.price = price;
+        this.startDate = startDate;
     }
 
     public Lesson() {
@@ -48,6 +54,14 @@ public class Lesson {
         this.price = price;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
@@ -55,6 +69,7 @@ public class Lesson {
                 ", teacherName='" + teacherName + '\'' +
                 ", duration=" + duration +
                 ", price=" + price +
+                ", startDate=" + dateToString(startDate) +
                 '}';
     }
 }
