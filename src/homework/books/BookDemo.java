@@ -10,7 +10,10 @@ import homework.books.model.User;
 import homework.books.storage.UserStorage;
 import homework.books.model.UserType;
 
+import java.util.Date;
 import java.util.Scanner;
+
+import static homework.students.util.DateUtil.stringToDate;
 
 public class BookDemo implements Commands {
     private static Scanner scanner = new Scanner(System.in);
@@ -193,16 +196,16 @@ public class BookDemo implements Commands {
         userStorage.add(admin);
 
 
-        Author Bulgakov = new Author("Mikhail", "Bulgakov", "abc@gmail.com", "male");
-        Author Charents = new Author("Yeghishe", "Charents", "def@gmail.com", "male");
-        Author Rowling = new Author("Joanne", "Rowling", "miban@mail.ru", "female");
+        Author Bulgakov = new Author("Mikhail", "Bulgakov", "abc@gmail.com", "male", stringToDate("06/01/2022"));
+        Author Charents = new Author("Yeghishe", "Charents", "def@gmail.com", "male", stringToDate("05/15/2022"));
+        Author Rowling = new Author("Joanne", "Rowling", "miban@mail.ru", "female", stringToDate("07/28/2022"));
         authorStorage.add(Bulgakov);
         authorStorage.add(Charents);
         authorStorage.add(Rowling);
 
-        bookStorage.add(new Book("Master & Margarita", Bulgakov, 100, 1, "Novel", admin));
-        bookStorage.add(new Book("Poems", Charents, 50, 1, "Novel", admin));
-        bookStorage.add(new Book("Harry Potter", Rowling, 85, 20, "Fantasy", admin));
+        bookStorage.add(new Book("Master & Margarita", Bulgakov, 100, 1, "Novel", admin, new Date()));
+        bookStorage.add(new Book("Poems", Charents, 50, 1, "Novel", admin, new Date()));
+        bookStorage.add(new Book("Harry Potter", Rowling, 85, 20, "Fantasy", admin, new Date()));
     }
 
     private static void addAuthor() {
@@ -215,6 +218,8 @@ public class BookDemo implements Commands {
         String email = scanner.nextLine();
         System.out.println("Input author's gender (male or female)");
         String gender = scanner.nextLine();
+        System.out.println("Please add registration date in MM/dd/yyyy format");
+        String strDate = scanner.nextLine();
 
         if (authorName != null) {
             authorName = authorName.trim();
@@ -236,8 +241,12 @@ public class BookDemo implements Commands {
             System.out.println("Please be sure you entered 'male' or 'female' ");
             addAuthor();
         }
+        if (!strDate.contains("/")) {
+            System.out.println("please divide month, day and day with /");
+            addAuthor();
+        }
 
-        Author author = new Author(authorName, authorSurname, email, gender);
+        Author author = new Author(authorName, authorSurname, email, gender, stringToDate(strDate));
         authorStorage.add(author);
         System.out.println("Author " + author + " created");
         System.out.println();
@@ -337,7 +346,7 @@ public class BookDemo implements Commands {
                     addBook();
                 }
 
-                Book book = new Book(title, author, price, count, genre, currentUser);
+                Book book = new Book(title, author, price, count, genre, currentUser, new Date());
                 bookStorage.add(book);
                 System.out.println("book added successfully!");
                 System.out.println(book);

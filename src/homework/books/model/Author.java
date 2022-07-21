@@ -1,16 +1,22 @@
 package homework.books.model;
 
+import java.util.Date;
+
+import static homework.students.util.DateUtil.dateToString;
+
 public class Author {
     private String name;
     private String surname;
     private String email;
     private String gender;
+    private Date registrationDate;
 
-    public Author(String name, String surname, String email, String gender) {
+    public Author(String name, String surname, String email, String gender, Date registrationDate) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.gender = gender;
+        this.registrationDate = registrationDate;
     }
 
     public Author() {
@@ -48,6 +54,14 @@ public class Author {
         this.gender = gender;
     }
 
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
@@ -55,6 +69,7 @@ public class Author {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
+                ", date of registration ='" + dateToString(registrationDate) + '\'' +
                 '}';
     }
 }
