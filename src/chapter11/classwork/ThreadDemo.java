@@ -1,6 +1,6 @@
 package chapter11.classwork;
 
-public class ThreatDemo {
+public class ThreadDemo {
     public static void main(String[] args) {
         Thread t = new Thread(new NewThread(), "our new threat");
         t.start();
